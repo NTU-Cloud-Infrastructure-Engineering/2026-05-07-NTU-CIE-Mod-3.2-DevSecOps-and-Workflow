@@ -3,13 +3,22 @@ provider "aws" {
 }
 
 terraform {
+  required_version = ">= 1.0"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+
   backend "s3" {
-    bucket = "sctp-ce12-tfstate-bucket" # Change this
-    key    = "Gina-NTU-CIE-Mod3-2.tfstate"  # Change this
+    bucket = "sctp-ce12-tfstate-bucket"    # Change this
+    key    = "Gina-NTU-CIE-Mod3-2.tfstate" # Change this
     region = "ap-southeast-1"
   }
 }
 
 resource "aws_s3_bucket" "s3_tf" {
-  bucket_prefix = "Gina-NTU-CIE-Mod3-2-s3-bucket"  # Set your bucket name here
+  bucket_prefix = "Gina-NTU-CIE-Mod3-2-s3-bucket" # Set your bucket name here
 }
